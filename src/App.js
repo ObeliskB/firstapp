@@ -16,14 +16,33 @@ function isPrime(num) {
 }
 
 function App() {
-  const [num, setNum] = useState(0);  
+  const [num, setNum] = useState(0);
+  const [prime, setPrime] = useState("");
+  
+  function checkPrime(cNum) {
+    if (isPrime(cNum)) {
+      setPrime("เป็นจำนวนเฉพาะ");
+    }
+    else {
+      setPrime("ไม่เป็นจำนวนเฉพาะ");
+    }
+  }
   return (
     <div className="App">
       <Header />
       <div className="MyContent">
         <h2>{num}</h2>
-        <button onClick={()=>setNum(num+1)}>เพิ่ม</button>
-        <button onClick={()=>setNum(num-1)}>ลด</button>
+          <button onClick={()=>{
+            let n = num + 1;
+            setNum(n);
+            checkPrime(n);
+        }}>เพิ่ม</button>
+        <button onClick={()=>{
+            let n = num - 1;
+            setNum(n);
+            checkPrime(n);
+          }}>ลด</button>
+        <h3>{prime}</h3>
       </div>
       <Footer />
     </div>
